@@ -11,7 +11,7 @@ namespace WebLoader\Filter;
 class CssUrlReplacerFilter
 {
 
-    private $patterns = [];
+    private $patterns;
     private $replacement;
 
     /**
@@ -20,6 +20,8 @@ class CssUrlReplacerFilter
      */
     public function __construct($patterns, $replacement, $start = TRUE, $end = FALSE)
     {
+        $this->patterns = array();
+        
 	$arr_patterns = is_array($patterns) ? $patterns : array($patterns);
 	foreach ($arr_patterns as $pattern) {
 	    $this->patterns[] = "~" . ($start ? "^" : "") . preg_quote($pattern, "~") . ($end ? "$" : "") . "~";
